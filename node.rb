@@ -47,9 +47,18 @@ class TestLinkedList < Minitest::Test
     first_node = linked_list.shift
     assert first_node.data == 2
     assert linked_list.size == 1
-    # last_node = linked_list.pop
-    # assert last_node.data == 1
-    # assert linked_list.size == 0
+    first_node = linked_list.shift
+    assert first_node.data == 1
+    assert linked_list.size == 0
+  end
+
+
+  def test_pretty_print
+    linked_list = LinkedList.new
+    linked_list.push(1)
+    assert linked_list.pretty_print == [1]
+    linked_list.push(2)
+    assert linked_list.pretty_print == [1, 2]
   end
 end
 
@@ -128,6 +137,22 @@ class LinkedList
       @head = current_node.next
       current_node
     end
+  end
+
+  # return array of linked list data
+  def pretty_print
+    current_node = @head
+    array = []
+    while current_node != nil do
+      array << current_node.data
+      current_node = current_node.next
+    end
+    array
+  end
+
+  # clear all linked list
+  def clear
+    @head = nil
   end
 end
 
